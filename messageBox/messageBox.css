@@ -1,0 +1,16 @@
+﻿.messageBox {
+	background-color: #cecece;
+}
+
+.messageBox__sendBtn {
+	background-color: grey;
+	border: 0;
+	border-radius: 10px;
+}
+
+.messageBox__newMessage {
+	background-color: grey;
+	border: 0;
+	border-radius: 10px;
+	padding: 10px;
+}

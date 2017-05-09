@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="chatHistory/chatHistory.css">
+	<link rel="stylesheet" href="messageBox/messageBox.css">
+	<link rel="stylesheet" href="abrchat/abrchat.css">
+</head>
+<body>
+	<h2>Чат Абрамова В.Э.</h2>
+	<div class="abrchat"></div>
+
+	<script src="abrchat/abrchat.js"></script>
+	<script src="chatHistory/chatHistory.js"></script>
+	<script src="messageBox/messageBox.js"></script>
+	<script>
+		'use strict';
+		new AbrChat({
+			el: document.querySelector('.abrchat'),
+			renderNow: true
+		});
+	</script>
+</body>
+</html>

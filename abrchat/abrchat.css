@@ -1,0 +1,9 @@
+﻿.abrchat {
+	background-color: #cecece;
+}
+
+.abrchat__btn {
+	background-color: grey;
+	border: 0;
+	border-radius: 10px;
+}

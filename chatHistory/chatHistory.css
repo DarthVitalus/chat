@@ -1,0 +1,11 @@
+﻿.chatHistory {
+	background-color: purple;
+	border: 0;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+.chatHistory__message {
+	background-color: #cecece;
+	margin: 3px;
+}
