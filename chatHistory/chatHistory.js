@@ -5,13 +5,35 @@
 		constructor({ el }) {
 			this.el = el;
 			this.el.classList.add('chatHistory');
+			this.newMessageTemplate = doT.template('<div class="chatHistory__message">{{=it.text}}</div>');
 		}
 
-		appendMessage({ text }) {
-			const newMessageEl = document.createElement('div');
-			newMessageEl.classList.add('chatHistory__message');
-			newMessageEl.textContent = text;
-			this.el.appendChild(newMessageEl);
+		appendMessage(message) {
+			this.chatHistory.push(message);
+			const newMessageHTML = this.newMessageTemplate({ text: message.text });
+			this.el.insertAdjacentHTML("beforeEnd", newMessageHTML);
+		}
+
+		render() {
+			this.chatHistory = ChatHistory.getData();
+			this.chatHistory.forEach((message) => {
+				const messageHTML = this.newMessageTemplate(message);
+				this.el.insertAdjacentHTML("beforeEnd", messageHTML);
+			});
+		}
+
+		static getData() {
+			return [
+				{
+					text: 'Первое сообщение'
+				},
+				{
+					text: 'Второе сообщение'
+				},
+				{
+					text: 'Третье сообщение'
+				}
+			];
 		}
 	}
 

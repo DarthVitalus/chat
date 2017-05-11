@@ -13,9 +13,10 @@
 	<script src="abrchat/abrchat.js"></script>
 	<script src="chatHistory/chatHistory.js"></script>
 	<script src="messageBox/messageBox.js"></script>
+	<script src="packages/doT/doT.js"></script>
 	<script>
 		'use strict';
-		new AbrChat({
+		let abrChat = new AbrChat({
 			el: document.querySelector('.abrchat'),
 			renderNow: true
 		});

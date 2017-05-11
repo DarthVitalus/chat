@@ -54,6 +54,10 @@
 			this.el.appendChild(this.newMessage);
 			this.el.appendChild(this.sendBtn);
 		}
+
+		on (eventName, handler) {
+			this.el.addEventListener(eventName, handler);
+		}
 	}
 
 	//export

@@ -10,6 +10,7 @@
 		}
 
 		render() {
+			this.chatHistory.render();
 			this.el.appendChild(this.chatHistory.el);
 			this.messageBox.render();
 			this.el.appendChild(this.messageBox.el);
@@ -23,7 +24,7 @@
 				el: document.createElement('div')
 			});
 
-			this.messageBox.el.addEventListener('sendMessage',
+			this.messageBox.on('sendMessage',
 				(event) => {
 					this.chatHistory.appendMessage({
 						text: event.detail.text
