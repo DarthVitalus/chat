@@ -16,10 +16,11 @@
 
 		render() {
 			this.chatHistory = ChatHistory.getData();
+			let resultHTML = '';
 			this.chatHistory.forEach((message) => {
-				const messageHTML = this.newMessageTemplate(message);
-				this.el.insertAdjacentHTML("beforeEnd", messageHTML);
+				resultHTML += this.newMessageTemplate(message);
 			});
+			this.el.insertAdjacentHTML("beforeEnd", resultHTML);
 		}
 
 		static getData() {
