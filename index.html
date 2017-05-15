@@ -11,19 +11,7 @@
 	<h2>Чат Абрамова В.Э.</h2>
 	<div class="app"></div>
 	
-	<!--<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-	<script>
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyDj0R56Yf7zn3NpP5LF-6-dGtTZhD07VNU",
-			authDomain: "abramovchat.firebaseapp.com",
-			databaseURL: "https://abramovchat.firebaseio.com",
-			projectId: "abramovchat",
-			storageBucket: "abramovchat.appspot.com",
-			messagingSenderId: "93869637710"
-		};
-		firebase.initializeApp(config);
-	</script>-->
+	<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
 	<script src="app/app.js"></script>
 	<script src="app/components/chatHistory/chatHistory.js"></script>
 	<script src="app/components/messageBox/messageBox.js"></script>
@@ -33,9 +21,24 @@
 	<script src="http://stevenlevithan.com/assets/misc/date.format.js"></script>
 	<script>
 		'use strict';
+
+		//// Initialize Firebase
+		//var config = {
+		//	apiKey: "AIzaSyDj0R56Yf7zn3NpP5LF-6-dGtTZhD07VNU",
+		//	authDomain: "abramovchat.firebaseapp.com",
+		//	databaseURL: "https://abramovchat.firebaseio.com",
+		//	projectId: "abramovchat",
+		//	storageBucket: "abramovchat.appspot.com",
+		//	messagingSenderId: "93869637710"
+		//};
+		//firebase.initializeApp(config);
+		//firebase.auth().signInAnonymously().catch(function (error) {
+		//	// Handle Errors here.
+		//});
+
 		let app = new App({
 		    el: document.querySelector('.app'),
-		    db: new FireBase('https://components-e2e6e.firebaseio.com/chat/'),
+			db: new FireBase('https://abramovchat.firebaseio.com/'),
 			renderNow: true
 		});
 	</script>

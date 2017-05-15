@@ -53,6 +53,7 @@
 						event.detail.callback();
 				}
 			);
+
 			this.messageBox.on('sendMessage',
 				(event) => {
 				    const message = {

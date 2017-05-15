@@ -12,7 +12,7 @@
 
 		evaluateTemplate () {
 			this.newMessageTemplate = doT.template(`
-				<div class="chatHistory__message{{? it.login === '${this.login}' }}_mine{{?}}"><span>{{=it.login}}: </span>{{=it.text}} <span>{{=it.date.format('dd.mm.yyyy HH:MM:ss')}}</span></div>
+				<div class="chatHistory__message{{? it.login === '${this.login}' }}_mine{{?}}"><span>{{=it.login}}: </span>{{=it.text}} <span>{{=(new Date(it.date)).format('dd.mm.yyyy HH:MM:ss')}}</span></div>
 			`);
 		}
 
@@ -46,9 +46,25 @@
 			this.evaluateTemplate();
 		}
 
-		loadData (dateFrom) {
-		    this.chatHistory = ChatHistory.getTestData();
-        }
+		loadData(dateFrom) {
+			const self = this; 
+			this.db.get(
+				'messages',
+				(chatHistory) => {
+					if (!chatHistory) return;
+					let resultHtml = '';
+
+					Array.from(Object.values(chatHistory)).filter((message) => {
+						return dateFrom === undefined || message.date >= dateFrom;
+					}).forEach((message) => {
+						resultHtml += self.newMessageTemplate(message);
+					});
+
+					self.el.insertAdjacentHTML('beforeEnd', resultHtml);
+				},
+				dateFrom
+			);
+		}
 
 		static getTestData () {
 			return [

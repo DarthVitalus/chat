@@ -21,7 +21,7 @@
 
                     const respData = JSON.parse(req.responseText);
 
-                    callback(respData);
+					callback(respData, params);
                 });
 
             req.send(JSON.stringify(params));
