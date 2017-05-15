@@ -2,8 +2,9 @@
 	'use strict';
 
 	class ChatHistory {
-		constructor ({ el }) {
+		constructor ({ el, db }) {
 			this.el = el;
+		    this.db = db;
 			this.el.classList.add('chatHistory');
 			this.evaluateTemplate();
 			this.chatHistory = [];
@@ -11,17 +12,13 @@
 
 		evaluateTemplate () {
 			this.newMessageTemplate = doT.template(`
-				<div class="chatHistory__message{{? it.login === '${this.login}' }}_mine{{?}}"><span>{{=it.login}}: </span>{{=it.text}} <span>{{=it.date}}</span></div>
+				<div class="chatHistory__message{{? it.login === '${this.login}' }}_mine{{?}}"><span>{{=it.login}}: </span>{{=it.text}} <span>{{=it.date.format('dd.mm.yyyy HH:MM:ss')}}</span></div>
 			`);
 		}
 
 		appendMessage (message) {
 			this.chatHistory.push(message);
-			const newMessageHtml = this.newMessageTemplate({
-				login: this.login,
-				text: message.text,
-				date: (new Date()).format('dd.mm.yyyy HH:MM:ss')
-			});
+			const newMessageHtml = this.newMessageTemplate(message);
 			this.el.insertAdjacentHTML('beforeEnd', newMessageHtml);
 		}
 
@@ -47,26 +44,28 @@
 		setLogin (login) {
 			this.login = login;
 			this.evaluateTemplate();
-			this.chatHistory = ChatHistory.getData();
-			this.render();
 		}
 
-		static getData () {
+		loadData (dateFrom) {
+		    this.chatHistory = ChatHistory.getTestData();
+        }
+
+		static getTestData () {
 			return [
 				{
 					login: "1",
 					text: 'Первое сообщение',
-					date: '14.05.2017 21:44:00'
+					date: new Date('2017-05-01T13:14:15.000')
 				},
 				{
 					login: "1",
 					text: 'Второе сообщение',
-					date: '14.05.2017 21:45:00'
+					date: new Date('2017-05-02T13:14:15.000')
 				},
 				{
 					login: "2",
 					text: 'Третье сообщение',
-					date: '14.05.2017 21:46:00'
+					date: new Date('2017-05-03T13:14:15.000')
 				}
 			];
 		}

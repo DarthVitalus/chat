@@ -11,7 +11,7 @@
 	<h2>Чат Абрамова В.Э.</h2>
 	<div class="app"></div>
 	
-	<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+	<!--<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
 	<script>
 		// Initialize Firebase
 		var config = {
@@ -23,17 +23,19 @@
 			messagingSenderId: "93869637710"
 		};
 		firebase.initializeApp(config);
-	</script>
+	</script>-->
 	<script src="app/app.js"></script>
 	<script src="app/components/chatHistory/chatHistory.js"></script>
 	<script src="app/components/messageBox/messageBox.js"></script>
 	<script src="app/components/loginForm/loginForm.js"></script>
-	<script src="packages/doT/doT.js"></script>
+	<script src="app/packages/doT/doT.js"></script>
+    <script src="network/firebase.js"></script>
 	<script src="http://stevenlevithan.com/assets/misc/date.format.js"></script>
 	<script>
 		'use strict';
 		let app = new App({
-			el: document.querySelector('.app'),
+		    el: document.querySelector('.app'),
+		    db: new FireBase('https://components-e2e6e.firebaseio.com/chat/'),
 			renderNow: true
 		});
 	</script>
