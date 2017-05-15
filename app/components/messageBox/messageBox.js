@@ -10,16 +10,16 @@
 		}
 
 		_initElements () {
-			this.newMessage = document.createElement('textarea');
-			this.newMessage.setAttribute('type', 'text');
-			this.newMessage.classList.add('messageBox__newMessage');
+			this.el.innerHTML = `
+			<textarea class="messageBox__newMessage" type="text"></textarea>
+			<input class="messageBox__sendBtn" value="Отправить"/>
+			`;
 
-			this.sendBtn = document.createElement('input');
-			this.sendBtn.setAttribute('value', 'Отправить');
-			this.sendBtn.classList.add('messageBox__sendBtn');
+			this.newMessage = this.el.getElementsByClassName('messageBox__newMessage')[0];
+			this.sendBtn = this.el.getElementsByClassName('messageBox__sendBtn')[0];
 		}
 
-		_initEvents() {
+		_initEvents () {
 			this.sendBtn.addEventListener('click', () => { this._sendMessage(); });
 			this.el.addEventListener('keypress',
 				(e) => {
@@ -30,7 +30,7 @@
 				});
 		}
 
-		_sendMessage() {
+		_sendMessage () {
 			const text = this.newMessage.value;
 			if (!text) return;
 
@@ -46,17 +46,31 @@
 			this.el.dispatchEvent(sendMessageEvent);
 		}
 
-		_sendMessageCallback() {
+		_sendMessageCallback () {
 			this.newMessage.value = '';
 		}
 
-		render() {
+		render (options) {
+			if (options && options.hidden)
+				this.el.hidden = options.hidden;
 			this.el.appendChild(this.newMessage);
 			this.el.appendChild(this.sendBtn);
 		}
 
+		show () {
+			this.el.hidden = false;
+		}
+
+		hide () {
+			this.el.hidden = true;
+		}
+
 		on (eventName, handler) {
 			this.el.addEventListener(eventName, handler);
+		}
+
+		setLogin (login) {
+			this.login = login;
 		}
 	}
 

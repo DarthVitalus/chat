@@ -9,3 +9,7 @@
 	background-color: #cecece;
 	margin: 3px;
 }
+
+.chatHistory__message_mine {
+	background-color: #accfba;
+}

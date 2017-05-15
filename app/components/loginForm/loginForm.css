@@ -1,0 +1,16 @@
+﻿.loginForm {
+	background-color: purple;
+	border: 0;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+.loginForm__login {
+	background-color: #cecece;
+	margin: 3px;
+}
+
+.loginForm__applyBtn {
+	background-color: #cecece;
+	margin: 3px;
+}
