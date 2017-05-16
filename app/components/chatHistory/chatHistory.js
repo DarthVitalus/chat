@@ -16,6 +16,7 @@
 			`);
 		}
 
+        // deprecated
 		appendMessage (message) {
 			this.chatHistory.push(message);
 			const newMessageHtml = this.newMessageTemplate(message);
@@ -54,13 +55,17 @@
 					if (!chatHistory) return;
 					let resultHtml = '';
 
-					Array.from(Object.values(chatHistory)).filter((message) => {
-						return dateFrom === undefined || message.date >= dateFrom;
-					}).forEach((message) => {
-						resultHtml += self.newMessageTemplate(message);
-					});
+                    for (let messageId in chatHistory) {
+                        if (!chatHistory.hasOwnProperty(messageId)) return;
+                        
+                        if (!self.chatHistory.includes(messageId)) {
+                            resultHtml += self.newMessageTemplate(chatHistory[messageId]);
+                            self.chatHistory.push(messageId);
+                        }
+                    }
 
-					self.el.insertAdjacentHTML('beforeEnd', resultHtml);
+					if (resultHtml !== '')
+					    self.el.insertAdjacentHTML('beforeEnd', resultHtml);
 				},
 				dateFrom
 			);

@@ -59,9 +59,9 @@
 				    const message = {
 				        login: this.login,
 				        text: event.detail.text,
-                        date: new Date()
+                        date: (new Date()).toUTCString()
 				    };
-				    this.chatHistory.appendMessage(message);
+				    //this.chatHistory.appendMessage(message);
 
 				    this.db.post('messages', message);
 
